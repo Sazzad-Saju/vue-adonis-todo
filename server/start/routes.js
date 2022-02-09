@@ -36,5 +36,7 @@ Route.group(() => {
             .middleware('auth'); //fetch user project
         Route.post('projects', 'ProjectController.create')
             .middleware('auth'); //create user project
+        Route.delete('projects/:id', 'ProjectController.destroy')
+            .middleware('auth'); //delete user project
     })
     .prefix('api');

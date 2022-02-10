@@ -38,5 +38,8 @@ Route.group(() => {
             .middleware('auth'); //create user project
         Route.delete('projects/:id', 'ProjectController.destroy')
             .middleware('auth'); //delete user project
+        // Route.patch('projects/:id', 'ProjectController.update')
+        //     .middleware('auth'); //delete user project
+        Route.patch('projects/:id', 'ProjectController.update').middleware('auth'); //update task
     })
     .prefix('api');

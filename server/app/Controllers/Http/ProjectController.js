@@ -23,14 +23,24 @@ class ProjectController {
         return project;
     }
     async destroy({ auth, request, params }) {
+            const user = await auth.getUser();
+            const { id } = params;
+            const project = await Project.find(id);
+            // if (project.user_id != user.id) {
+            //     return Response.status(403);
+            // }
+            AuthorizationService.verifyPermission(project, user)
+            await project.delete();
+            return project;
+        }
+        // update
+    async update({ auth, request, params }) {
         const user = await auth.getUser();
         const { id } = params;
         const project = await Project.find(id);
-        // if (project.user_id != user.id) {
-        //     return Response.status(403);
-        // }
-        AuthorizationService.verifyPermission(project, user)
-        await project.delete();
+        AuthorizationService.verifyPermission(project, user);
+        project.merge(request.only('title'));
+        await project.save();
         return project;
     }
 }

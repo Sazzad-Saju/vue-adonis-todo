@@ -1,5 +1,7 @@
 'use strict'
 
+const TaskController = require('../app/Controllers/Http/TaskController');
+
 /*
 |--------------------------------------------------------------------------
 | Routes
@@ -38,8 +40,11 @@ Route.group(() => {
             .middleware('auth'); //create user project
         Route.delete('projects/:id', 'ProjectController.destroy')
             .middleware('auth'); //delete user project
-        // Route.patch('projects/:id', 'ProjectController.update')
-        //     .middleware('auth'); //delete user project
         Route.patch('projects/:id', 'ProjectController.update').middleware('auth'); //update task
+
+        Route.post('projects/:id/tasks', 'TaskController.create').middleware('auth'); //update task
+        Route.get('projects/:id/tasks', 'TaskController.index').middleware('auth'); //update task
+        Route.delete('tasks/:id', 'TaskController.destroy').middleware('auth');
+        Route.patch('tasks/:id', 'TaskController.update').middleware('auth');
     })
     .prefix('api');

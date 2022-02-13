@@ -8,7 +8,7 @@
       >
         <!-- <v-app-bar-nav-icon></v-app-bar-nav-icon> -->
 
-        <v-toolbar-title class="mx-4">VUE ADONIS TODO</v-toolbar-title>
+        <v-toolbar-title class="mx-4"><b>VUE ADONIS TODO</b></v-toolbar-title>
         <v-toolbar-items>
           <v-btn id="no-background-hover" v-if="isLoggedIn">
            <span class="material-icons me-2">playlist_add_check</span>
@@ -24,7 +24,7 @@
           Register
         </v-btn>
 
-        <v-btn id="no-background-hover" v-if="!isLoggedIn">
+        <v-btn id="no-background-hover" v-if="!isLoggedIn" to='/login'>
           <v-icon class="me-2">fingerprint</v-icon>
           Login
         </v-btn>

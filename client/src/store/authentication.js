@@ -9,6 +9,10 @@ export default {
         registerError: null,
     },
     actions: {
+        logout({ commit }) {
+            commit('setToken', null);
+            router.push('/login');
+        },
         register({ commit, state }) {
             commit('setRegisterError', null);
             return HTTP().post('/auth/register', {

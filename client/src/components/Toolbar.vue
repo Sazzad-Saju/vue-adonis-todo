@@ -29,7 +29,7 @@
           Login
         </v-btn>
 
-        <v-btn id="no-background-hover" v-if="isLoggedIn">
+        <v-btn id="no-background-hover" v-if="isLoggedIn" @click="logout">
           <v-icon class="me-2">exit_to_app</v-icon>
           Logout
         </v-btn>
@@ -42,12 +42,17 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex';
+import {mapGetters,mapActions} from 'vuex';
 export default {
     name: 'Toolbar',
     computed: {
       ...mapGetters('authentication',[
         'isLoggedIn',
+      ]),
+    },
+    methods:{
+      ...mapActions('authentication',[
+        'logout',
       ]),
     },
 };

@@ -3,10 +3,14 @@
         <v-layout row wrap>
             <v-flex xs6 offset-xs4>
             <h1 >Register</h1>
-            <v-text-field label="Email" placeholder="Email"></v-text-field>
-            <v-text-field label="Password" placeholder="Password" type="password" autocomplete>
+            <v-text-field label="Email" placeholder="Email" :value="registerEmail" @input="setRegisterEmail"></v-text-field>
+            <v-text-field label="Password" placeholder="Password" type="password" :value="registerPassword" @input="setRegisterPassword">
             </v-text-field>
-            <v-btn color="#1ebbd7" dark>
+
+            <!-- when there is register error -->
+            <v-alert type="error" :value="registerError"> {{registerError}} </v-alert>
+
+            <v-btn color="#1ebbd7" dark @click="register">
                 <v-icon>account_circle</v-icon>
                 Register
             </v-btn>
@@ -18,9 +22,24 @@
 </template>
 
 <script>
+import {mapState, mapMutations, mapActions} from 'vuex';
 export default{
     // name: "Register",
-}
+    computed: {
+        ...mapState('authentication', [
+            'registerEmail',
+            'registerPassword',
+            'registerError',
+        ]),
+    },
+    methods: {
+        ...mapMutations('authentication', [
+            'setRegisterEmail', 'setRegisterPassword',
+        ]),
+        ...mapActions('authentication',['register',
+        ]),
+    },
+};
 </script>
 
 <style scoped>

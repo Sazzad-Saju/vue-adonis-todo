@@ -10,7 +10,7 @@
 
         <v-toolbar-title class="mx-4">VUE ADONIS TODO</v-toolbar-title>
         <v-toolbar-items>
-          <v-btn id="no-background-hover" >
+          <v-btn id="no-background-hover" v-if="isLoggedIn">
            <span class="material-icons me-2">playlist_add_check</span>
            Projects
           </v-btn>
@@ -19,17 +19,17 @@
         <v-spacer></v-spacer>
 
         <v-toolbar-items>
-        <v-btn id="no-background-hover" to='/register'>
+        <v-btn id="no-background-hover" to='/register' v-if="!isLoggedIn">
           <v-icon class="me-2">account_box</v-icon>
           Register
         </v-btn>
 
-        <v-btn id="no-background-hover">
+        <v-btn id="no-background-hover" v-if="!isLoggedIn">
           <v-icon class="me-2">fingerprint</v-icon>
           Login
         </v-btn>
 
-        <v-btn id="no-background-hover">
+        <v-btn id="no-background-hover" v-if="isLoggedIn">
           <v-icon class="me-2">exit_to_app</v-icon>
           Logout
         </v-btn>
@@ -42,8 +42,14 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex';
 export default {
     name: 'Toolbar',
+    computed: {
+      ...mapGetters('authentication',[
+        'isLoggedIn',
+      ]),
+    },
 };
 </script>
 

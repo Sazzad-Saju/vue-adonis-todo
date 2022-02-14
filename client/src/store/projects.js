@@ -8,6 +8,14 @@ export default {
         newProjectName: null,
     },
     actions: {
+        deleteProject({ commit }, project) {
+            if (confirm('Are you sure to delete this project?')) {
+                return HTTP().delete(`projects/${project.id}`)
+                    .then(() => {
+                        commit('removeProject', project);
+                    })
+            }
+        },
         saveProject({ commit }, project) {
             return HTTP().patch(`/projects/${project.id}`, project)
                 .then(() => {
@@ -49,6 +57,9 @@ export default {
         },
         setProjectTitle(state, { project, title }) {
             project.title = title;
+        },
+        removeProject(state, project) {
+            state.projects.splice(state.projects.indexOf(project), 1) //rmv som from arr
         },
     },
 };

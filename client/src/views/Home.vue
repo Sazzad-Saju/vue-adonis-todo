@@ -18,8 +18,9 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import Projects from "../components/Projects.vue";
-
+import router from '../router';
 export default {
   name: "Home",
 
@@ -27,5 +28,15 @@ export default {
     Projects,
     // HelloWorld,
   },
+  mounted(){
+    if(!this.isLoggedIn){
+      return router.push('/login');
+    }
+  },
+  computed:{
+    ...mapGetters('authentication',[
+      'isLoggedIn'
+    ])
+  }
 };
 </script>

@@ -2,7 +2,7 @@
   <div class="home" style="height:100vh">
     <v-layout>
       <v-flex xs5 class="pe-5">
-        <Projects></Projects>
+        <Projects v-if="isLoggedIn"></Projects>
           <!-- <Panel title="Projects">
           <h1>Testing</h1>
           </Panel> -->

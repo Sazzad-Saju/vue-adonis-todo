@@ -4,7 +4,7 @@
             <v-flex xs6 offset-xs4>
             <h1>Login</h1>
             <v-text-field label="Email" placeholder="Email" :value="loginEmail" @input="setloginEmail"></v-text-field>
-            <v-text-field label="Password" placeholder="Password" type="password" :value="loginPassword" @input="setloginPassword">
+            <v-text-field label="Password" placeholder="Password" type="password" :value="loginPassword" @input="setloginPassword" @keyup.enter="login">
             </v-text-field>
 
             <!-- when there is register error -->

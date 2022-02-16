@@ -1,6 +1,7 @@
 <template>
     <v-layout row wrap>
         <v-flex xs9>
+            <slot></slot>
             <!-- {{title}} -->
             <span v-if="!isEditMode" @click="$emit('onClick')">{{title}}</span>
             <v-text-field v-if="isEditMode" :value="title" @input="$emit('onInput',$event)" autofocus @keyup.enter="$emit('onSave')">

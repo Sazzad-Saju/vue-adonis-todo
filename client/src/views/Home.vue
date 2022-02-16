@@ -7,10 +7,11 @@
           <h1>Testing</h1>
           </Panel> -->
       </v-flex>
-      <v-flex xs7 class="pl-5">
-          <Panel title="Tasks">
+      <v-flex xs7 class="pl-5" v-if="currentProject">
+        <Tasks/>
+          <!-- <Panel title="Tasks">
           <h1>Testing</h1>
-          </Panel>
+          </Panel> -->
       </v-flex>
     </v-layout>
   </div>
@@ -18,14 +19,16 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapState } from 'vuex';
 import Projects from "../components/Projects.vue";
+import Tasks from "../components/Tasks.vue";
 import router from '../router';
 export default {
   name: "Home",
 
   components: {
     Projects,
+    Tasks,
     // HelloWorld,
   },
   mounted(){
@@ -34,6 +37,9 @@ export default {
     }
   },
   computed:{
+    ...mapState('projects',[
+      'currentProject',
+    ]),
     ...mapGetters('authentication',[
       'isLoggedIn'
     ])

@@ -1,7 +1,7 @@
 <template>
     <Panel title="Projects">
         <div class="projList mt-4 mb-4 ms-5" v-for="project in projects" :key="project.id">
-            <EditableRecord :isEditMode="project.isEditMode" :title="project.title" @onInput="setProjectTitle({project, title: $event,})" @onEdit="setEditMode(project)" @onSave="saveProject(project)" @onDelete="deleteProject(project)"
+            <EditableRecord :isEditMode="project.isEditMode" :title="project.title" @onInput="setProjectTitle({project, title: $event,})" @onEdit="setEditMode(project)" @onSave="saveProject(project)" @onDelete="deleteProject(project)" @onClick="projectClicked(project)"
             />
         </div>
         <!-- <CreateRecord/> -->
@@ -42,17 +42,25 @@ import EditableRecord from './EditableRecord';
             ])
         },
         methods:{
+            projectClicked(project){
+                this.setCurrentProject(project);
+                this.fetchTasksForProject(project);
+            },
             ...mapMutations('projects',[
                 'setNewProjectName',
                 'setEditMode',
                 // 'unsetEditMode',
-                'setProjectTitle'
+                'setProjectTitle',
+                'setCurrentProject',
             ]),
             ...mapActions('projects',[
                 'createProject',
                 'fetchProjects',
                 'saveProject',
                 'deleteProject'
+            ]),
+            ...mapActions('tasks',[
+                'fetchTasksForProject',
             ]),
         },
     };

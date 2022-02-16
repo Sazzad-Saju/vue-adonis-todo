@@ -16,6 +16,10 @@ export default {
             commit('setToken', null);
             router.push('/login');
         },
+        about({ commit }) {
+            // commit('setToken', null);
+            router.push('/about');
+        },
         register({ commit, state }) {
             commit('setRegisterError', null);
             return HTTP().post('/auth/register', {

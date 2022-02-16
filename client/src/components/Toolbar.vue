@@ -33,7 +33,7 @@
           <v-icon class="me-2">exit_to_app</v-icon>
           Logout
         </v-btn>
-        <v-btn id="no-background-hover">
+        <v-btn id="no-background-hover" @click="about">
           <v-icon class="me-2">mdi-heart</v-icon>
           About
         </v-btn>
@@ -53,6 +53,7 @@ export default {
     methods:{
       ...mapActions('authentication',[
         'logout',
+        'about',
       ]),
     },
 };
